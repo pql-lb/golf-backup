@@ -3,9 +3,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const YOUR_DOMAIN = process.env.HOME_URL;
-
 export async function POST(request: NextRequest) {
+    const YOUR_DOMAIN = process.env.HOME_URL;
+
     try {
         const stripe = new Stripe(
             "sk_test_51Mv1PuDD8a2lLFRfYEsJj98LnxbzKZtTaKyh6Yj3KivDHkNRAjh1ItCKq2pno9x6JuIPmLV9oEk3LuW5IbC2tHgj00NaBQA1eR",
