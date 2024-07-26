@@ -17,7 +17,7 @@ const nextConfig = withPWA({
         },
       },
       {
-        urlPattern: /^https:\/\/mywebsite\.com\/.*$/,
+        urlPattern: /^https:\/\/chat-golf-project.vercel.app\/.*$/,
         handler: 'CacheFirst',
         options: {
           cacheName: 'static-assets',
