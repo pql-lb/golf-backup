@@ -10,7 +10,7 @@ const nextConfig = withPWA({
     experimental: {
         serverActions: {
           allowedOrigins: ['*'],
-        },
+        },  
     },
     webpack: (config) => {
       config.resolve.alias.canvas = false;
