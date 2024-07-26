@@ -9,6 +9,7 @@ import { ColouredSection } from "./colouredSection";
 import { Testimonial } from "./testimonial";
 import { Wrapper } from "@/wrappers/opacity";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
     const { status, data: session }: any = useSession();
@@ -129,6 +130,9 @@ export const Child = React.memo(({ items, items2 }: any) => {
 
             <Wrapper>
                 <Testimonial content={content} />
+            </Wrapper>
+            <Wrapper>
+                <Final content={content} />
             </Wrapper>
         </div>
     );
@@ -253,5 +257,73 @@ const Faqs = ({ content }: any) => {
                 </div>
             </div>
         );
+    }
+};
+
+const Final = ({ content }: any) => {
+    const [input1, setInput1] = useState("");
+    const [input2, setInput2] = useState("");
+    const [loader, setLoader] = useState(false);
+    const [success, setSuccess] = useState<any>(null);
+    const handleInputs = async () => {
+        setLoader(true);
+        const formData = { input1, input2 };
+        const response = await fetch("/api/submit-form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+        if (data) {
+            setLoader(false);
+        }
+        if (data.message === "Success") {
+            setSuccess(true);
+        } else {
+            setSuccess(false);
+        }
+    };
+    if (content.finalHeadline || content.finalCtaText || content.finalCtaUrl) {
+        return (
+            <div className="my-20">
+                <div className="wrapper">
+                    <h2 className="text-2xl mb-5">{content.finalHeadline}</h2>
+                    <div className="flex gap-5">
+                        <input
+                            value={input1}
+                            onChange={(e: any) => setInput1(e.target.value)}
+                            className="p-1 border border-deepGreenO rounded-sm w-1/2"
+                            placeholder={"Name"}
+                        />
+                        <input
+                            value={input2}
+                            onChange={(e: any) => setInput2(e.target.value)}
+                            className="p-1 border border-deepGreenO rounded-sm w-1/2"
+                            placeholder={"Email"}
+                        />
+                        <Link
+                            onClick={handleInputs}
+                            className="button--light min-w-[200px]"
+                            href={content.finalCtaUrl}
+                        >
+                            {loader
+                                ? "Sending..."
+                                : success
+                                ? "Message Sent!"
+                                : success === false
+                                ? "Error"
+                                : content.finalCtaText
+                                ? content.finalCtaText
+                                : "Submit"}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        return <></>;
     }
 };
