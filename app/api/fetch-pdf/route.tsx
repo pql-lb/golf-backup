@@ -7,8 +7,8 @@ export async function POST(request: NextRequest) {
     try {
         console.log("here");
         const s3 = new AWS.S3({
-            accessKeyId: process.env.AWS_ACCESS_ID,
-            secretAccessKey: process.env.AWS_ACCESS_KEY_S3,
+            accessKeyId: process.env.AWS_ID,
+            secretAccessKey: process.env.AWS_SECRET,
         });
 
         const params = {
