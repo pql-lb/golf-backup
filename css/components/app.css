@@ -22,31 +22,31 @@
 	}
 
 
-	.heading1-large .heading-1 {
+	.heading1-large .home .heading-1 {
 		@apply text-3xl;
 	}
-	.heading1-medium .heading-1 {
+	.heading1-medium  .home .heading-1 {
 		@apply text-2xl;
 	}
-	.heading1-small .heading-1 {
+	.heading1-small .home  .heading-1 {
 		@apply text-xl;
 	}
-	.heading2-large .heading-2 {
+	.heading2-large  .home .heading-2 {
 		@apply text-2xl;
 	}
-	.heading2-medium .heading-2 {
+	.heading2-medium .home  .heading-2 {
 		@apply text-xl;
 	}
-	.heading2-small .heading-2 {
+	.heading2-small  .home .heading-2 {
 		@apply text-lg;
 	}
-	.para-large .para {
+	.para-large .home  .para {
 		@apply text-2xl;
 	}
-	.para-medium .para {
+	.para-medium .home  .para {
 		@apply text-xl;
 	}
-	.para-small .para {
+	.para-small .home  .para {
 		@apply text-lg;
 	}
 

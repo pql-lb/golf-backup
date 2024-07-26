@@ -12,25 +12,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
-    useEffect(() => {
-        if ("serviceWorker" in navigator) {
-            const registerServiceWorker = async () => {
-                try {
-                    const registration = await navigator.serviceWorker.register(
-                        "/sw.js"
-                    );
-                    console.log(
-                        "Service Worker registered with scope:",
-                        registration.scope
-                    );
-                } catch (error) {
-                    console.error("Service Worker registration failed:", error);
-                }
-            };
-
-            registerServiceWorker();
-        }
-    }, []);
     const { status, data: session }: any = useSession();
     useEffect(() => {
         const browserInfo = {
@@ -113,7 +94,7 @@ export const Child = React.memo(({ items, items2 }: any) => {
     };
 
     return (
-        <div className="min-h-[100vh] bg-white ">
+        <div className="min-h-[100vh] home bg-white ">
             <Wrapper>
                 <div
                     style={{ color: String(content.colourText) }}
