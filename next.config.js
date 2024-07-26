@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const runtimeCaching = require('next-pwa/cache');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true, 
+  skipWaiting: true,
+});
+const nextConfig = withPWA({
     experimental: {
         serverActions: {
           allowedOrigins: ['*'],
@@ -19,6 +25,32 @@ const nextConfig = {
           },
       ],
   },
-}
+  pwa: {
+    dest: 'public',
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/chat-golf-project.vercel.app\/.*$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'api-cache',
+        },
+      },
+      {
+        urlPattern: /^https:\/\/mywebsite\.com\/.*$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-assets',
+          expiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
+          },
+        },
+      },
+    ],
+  },
+});
 
-module.exports = nextConfig
+module.exports = nextConfig;
+
+
+
