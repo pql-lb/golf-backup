@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import action from "./actions";
 
 //PAYMENT ELEMENT
-const YOUR_DOMAIN = "https://chat-gpt-golf-project-uhyl.vercel.app/";
+const YOUR_DOMAIN = process.env.HOME_URL;
 export const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();

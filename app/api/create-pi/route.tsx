@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const YOUR_DOMAIN = "https://chat-gpt-golf-project-uhyl.vercel.app/";
+const YOUR_DOMAIN = process.env.HOME_URL;
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
