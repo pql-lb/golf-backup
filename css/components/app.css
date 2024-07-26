@@ -1,0 +1,78 @@
+@tailwind components;
+@layer components {
+	.wrapper {
+		@apply relative max-w-[1200px] mx-auto w-11/12;
+	}
+	.wrapper--small {
+		@apply relative max-w-[1100px] mx-auto w-11/12;
+	}
+	.button {
+		@apply flex justify-center items-center bg-deepGreen py-1.5 px-4 rounded-md border-2 border-deepGreen hover:border-black font-sans text-sm text-white hover:bg-black duration-500;
+	}
+	.button--plain {
+		@apply flex justify-center items-center text-sm font-sans py-1.5 px-4 border-2 border-deepGreen  hover:border-black rounded-md text-deepGreen hover:text-black duration-500;
+	}
+	.button--light {
+		@apply flex justify-center items-center bg-deepGreenO py-2 px-6 rounded-md font-medium  font-sans text-sm text-deepGreen hover:bg-white duration-500;
+	}
+
+	.swiper-button-prev, .swiper-button-next {
+		@apply text-deepGreen;
+		
+	}
+
+
+	.heading1-large .heading-1 {
+		@apply text-3xl;
+	}
+	.heading1-medium .heading-1 {
+		@apply text-2xl;
+	}
+	.heading1-small .heading-1 {
+		@apply text-xl;
+	}
+	.heading2-large .heading-2 {
+		@apply text-2xl;
+	}
+	.heading2-medium .heading-2 {
+		@apply text-xl;
+	}
+	.heading2-small .heading-2 {
+		@apply text-lg;
+	}
+	.para-large .para {
+		@apply text-2xl;
+	}
+	.para-medium .para {
+		@apply text-xl;
+	}
+	.para-small .para {
+		@apply text-lg;
+	}
+
+	.rich-text > * {
+		line-height: normal !important;
+		@apply mb-2;
+	}
+	.heading1-large .rich-text h1, .heading1-medium .rich-text h1, .heading1-small .rich-text h1 {
+		font-size: 1.5em;
+	}
+	.heading1-large .rich-text h2, .heading1-medium .rich-text h2, .heading1-small .rich-text h2 {
+		font-size: 1.4em;
+	}
+	.heading1-large .rich-text h3, .heading1-medium .rich-text h3, .heading1-small .rich-text h3 {
+		font-size: 1.3em;
+	}
+	.heading1-large .rich-text h4, .heading1-medium .rich-text h4, .heading1-small .rich-text h4 {
+		font-size: 1.2em;
+	}
+	.heading1-large .rich-text h5, .heading1-medium .rich-text h5, .heading1-small .rich-text h5 {
+		font-size: 1.1em;
+	}
+	.heading1-large .rich-text h6, .heading1-medium .rich-text h6, .heading1-small .rich-text h6 {
+		font-size: 1em;
+	}
+	.heading1-large .rich-text p, .heading1-medium .rich-text p, .heading1-small .rich-text p {
+		font-size: 1em;
+	}
+}

@@ -1,0 +1,11 @@
+@import "./base/app.css";
+@import "./components/app.css";
+@import "./utilities/app.css";
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    font-size: 30px !important;
+    color: #008c1a !important;
+}
+.swiper-pagination-bullet-active {
+    background: #008c1a !important;
+}
