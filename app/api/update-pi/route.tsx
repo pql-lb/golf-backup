@@ -7,9 +7,12 @@ import mongoose, { ConnectOptions } from "mongoose";
 import Session from "@/models/session";
 
 const uri = process.env.MONGODB_URI;
-mongoose.connect(String(uri), {
-    useUnifiedTopology: true,
-} as ConnectOptions);
+mongoose.connect(
+    "mongodb+srv://wBoojuOcxzTGwrp4:wBoojuOcxzTGwrp4@cluster0.5wwunqs.mongodb.net/Golf",
+    {
+        useUnifiedTopology: true,
+    } as ConnectOptions
+);
 
 export async function POST(request: NextRequest) {
     const body = await request.json();

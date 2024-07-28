@@ -1,8 +1,6 @@
 "use client";
-
 import { useRouter } from "next/navigation";
-
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { InputSection } from "./inputSection";
 import { TextSection } from "./textSection";
 import { ColouredSection } from "./colouredSection";
@@ -10,9 +8,11 @@ import { Testimonial } from "./testimonial";
 import { Wrapper } from "@/wrappers/opacity";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
+import { ServiceW } from "./pushNotification";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
     const { status, data: session }: any = useSession();
+
     useEffect(() => {
         const browserInfo = {
             userAgent: navigator.userAgent,
@@ -28,7 +28,12 @@ export const WrapperChild = React.memo(({ items, items2 }: any) => {
     if (status === "loading" || !session) {
         return <div className="w-full h-screen"></div>;
     } else {
-        return <Child items={items} />;
+        return (
+            <>
+                {/* <ServiceW /> */}
+                <Child items={items} />
+            </>
+        );
     }
 });
 export const Child = React.memo(({ items, items2 }: any) => {

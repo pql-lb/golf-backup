@@ -42,7 +42,7 @@
 	}
 	.para-large .home  .para {
 		@apply text-2xl;
-	}
+	}  
 	.para-medium .home  .para {
 		@apply text-xl;
 	}

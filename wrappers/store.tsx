@@ -4,18 +4,14 @@ import React, { createContext, useReducer, useEffect, Dispatch } from "react";
 
 const initialState = {
     loaded: false,
-    menuState: false,
-    darkMode: true,
-    hover: "",
-    booking: [],
+
+    subscription: null,
 };
 export interface State {
     state: {
         loaded: boolean;
-        menuState: boolean;
-        darkMode?: boolean;
-        hover?: string;
-        booking: any;
+
+        subscription: any;
     };
     dispatch?: React.Dispatch<any>;
 }
@@ -29,20 +25,11 @@ export const DispatchContext = createContext<AppDispatch | null>(null);
 
 const reducer = (state: any, action: any) => {
     switch (action.type) {
-        case "darkMode": {
-            return { ...state, darkMode: action.payload };
-        }
-        case "menuState": {
-            return { ...state, menuState: action.payload };
+        case "subscription": {
+            return { ...state, subscription: action.payload };
         }
         case "loaded": {
             return { ...state, loaded: action.payload };
-        }
-        case "hover": {
-            return { ...state, hover: action.payload };
-        }
-        case "booking": {
-            return { ...state, booking: action.payload };
         }
         default: {
             return state;
