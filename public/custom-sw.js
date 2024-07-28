@@ -24,7 +24,7 @@ self.addEventListener('push', function(event) {
 
 // Runtime caching for API calls
 registerRoute(
-    /^https:\/\/golf-pwa\.vercel\.app\/.*$/,
+    /^https:\/\/feebackgolf\.com\/.*$/,
     new NetworkFirst({
       cacheName: 'api-cache',
       networkTimeoutSeconds: 10,
@@ -42,7 +42,7 @@ registerRoute(
   
   // Runtime caching for the homepage
   registerRoute(
-    /^https:\/\/golf-pwa\.vercel\.app\/$/,
+    /^https:\/\/feebackgolf\.com\/$/,
     new NetworkFirst({
       cacheName: 'homepage-cache',
       plugins: [
