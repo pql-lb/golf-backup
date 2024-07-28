@@ -16,6 +16,7 @@ AWS.config.update({
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
+        console.log("fired", body);
         const params = {
             Destination: {
                 ToAddresses: ["laelbaker@hotmail.co.uk"],
