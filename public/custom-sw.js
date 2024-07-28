@@ -22,52 +22,52 @@ self.addEventListener('push', function(event) {
 
 
 
-// Runtime caching for API calls
-registerRoute(
-    /^https:\/\/feebackgolf\.com\/.*$/,
-    new NetworkFirst({
-      cacheName: 'api-cache',
-      networkTimeoutSeconds: 10,
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
-        }),
-        new CacheableResponsePlugin({
-          statuses: [0, 200],
-        }),
-      ],
-    })
-  );
+// // Runtime caching for API calls
+// registerRoute(
+//     /^https:\/\/feebackgolf\.com\/.*$/,
+//     new NetworkFirst({
+//       cacheName: 'api-cache',
+//       networkTimeoutSeconds: 10,
+//       plugins: [
+//         new ExpirationPlugin({
+//           maxEntries: 50,
+//           maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
+//         }),
+//         new CacheableResponsePlugin({
+//           statuses: [0, 200],
+//         }),
+//       ],
+//     })
+//   );
   
-  // Runtime caching for the homepage
-  registerRoute(
-    /^https:\/\/feebackgolf\.com\/$/,
-    new NetworkFirst({
-      cacheName: 'homepage-cache',
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 1,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
-        }),
-        new CacheableResponsePlugin({
-          statuses: [0, 200],
-        }),
-      ],
-    })
-  );
+//   // Runtime caching for the homepage
+//   registerRoute(
+//     /^https:\/\/feebackgolf\.com\/$/,
+//     new NetworkFirst({
+//       cacheName: 'homepage-cache',
+//       plugins: [
+//         new ExpirationPlugin({
+//           maxEntries: 1,
+//           maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
+//         }),
+//         new CacheableResponsePlugin({
+//           statuses: [0, 200],
+//         }),
+//       ],
+//     })
+//   );
   
-  // Runtime caching for static assets
-  registerRoute(
-    /\.(?:png|jpg|jpeg|svg|gif|css|js)$/,
-    new CacheFirst({
-      cacheName: 'static-assets',
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
-        }),
-      ],
-    })
-  );
+//   // Runtime caching for static assets
+//   registerRoute(
+//     /\.(?:png|jpg|jpeg|svg|gif|css|js)$/,
+//     new CacheFirst({
+//       cacheName: 'static-assets',
+//       plugins: [
+//         new ExpirationPlugin({
+//           maxEntries: 50,
+//           maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
+//         }),
+//       ],
+//     })
+//   );
   
