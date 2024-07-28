@@ -222,33 +222,28 @@ const Faqs = ({ content }: any) => {
                     <h2 className="mb-10 text-center text-2xl font-semibold">
                         Frequently Asked Questions
                     </h2>
-                    <div className=" grid sm:grid-cols-2 gap-10">
+                    <div className=" ">
                         <div className="col-span-1 flex flex-col ">
                             {content.faqs.map((item: any, i: number) => {
                                 return (
-                                    <button
-                                        className="text-left mb-2 font-semibold border-b pb-2"
-                                        onMouseOver={() => setNum(i)}
-                                        value={i}
-                                        key={item.title}
-                                    >
-                                        {item.title}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                        <div>
-                            {content.faqs.map((item: any, i: number) => {
-                                return (
-                                    <div
-                                        className={` absolute ${
-                                            num === i
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
-                                        key={item.content}
-                                    >
-                                        {item.content}
+                                    <div className="border-b pb-4 mb-4">
+                                        <button
+                                            className="text-left mb-2 w-full font-semibold "
+                                            onClick={() => setNum(i)}
+                                            value={i}
+                                            key={item.title}
+                                        >
+                                            {item.title}
+                                        </button>
+                                        <div
+                                            className={` ${
+                                                num === i
+                                                    ? "opacity-100 relative"
+                                                    : "opacity-0 absolute"
+                                            }`}
+                                        >
+                                            {item.content}
+                                        </div>
                                     </div>
                                 );
                             })}
