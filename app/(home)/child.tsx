@@ -289,7 +289,7 @@ const Final = ({ content }: any) => {
                 <div className="wrapper">
                     <h2 className="text-2xl mb-5">{content.finalHeadline}</h2>
                     <div className="">
-                        <div className="flex gap-5">
+                        <div className="flex gap-5 mb-4">
                             <input
                                 value={input1}
                                 onChange={(e: any) => setInput1(e.target.value)}
