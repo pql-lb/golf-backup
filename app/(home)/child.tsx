@@ -184,7 +184,7 @@ const Benefits = ({ content }: any) => {
             {" "}
             {content?.benefits?.length > 0 && (
                 <div className="wrapper my-20 ">
-                    <div className="grid gap-5 ">
+                    <div className="grid gap-5 sm:grid-cols-3 ">
                         {content.benefits.map((item: any) => {
                             let image;
                             if (item.image) {
@@ -192,17 +192,19 @@ const Benefits = ({ content }: any) => {
                             }
 
                             return (
-                                <div key={item.title} className="pb-5 border-b">
+                                <div key={item.title} className="pb-5 ">
                                     {image && (
                                         <img
                                             className="mb-2 mx-auto max-w-[75px]"
                                             src={image}
                                         />
                                     )}
-                                    <h2 className="mb-2 font-semibold text-lg">
+                                    <h2 className="mb-2  text-center font-semibold text-lg">
                                         {item.title}
                                     </h2>
-                                    <p className="text-base">{item.content}</p>
+                                    <p className="text-base text-center">
+                                        {item.content}
+                                    </p>
                                 </div>
                             );
                         })}

@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
         const params = {
             Destination: {
-                ToAddresses: ["hello@feedbacktooling.com"],
+                ToAddresses: ["laelbaker@hotmail.co.uk"],
             },
             Message: {
                 Body: {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
                 },
                 Subject: { Data: "New Hero Form Submission" },
             },
-            Source: "hello@feedbacktooling.com",
+            Source: "laelbaker@hotmail.co.uk",
         };
 
         let sendPromise = new AWS.SES({ apiVersion: "2010-12-01" })
