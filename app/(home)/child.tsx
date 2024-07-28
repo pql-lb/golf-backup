@@ -158,14 +158,14 @@ const Steps = ({ content }: any) => {
                                     >
                                         {image && (
                                             <img
-                                                className="mb-2 mx-auto"
+                                                className="mb-2 mx-auto max-w-[75px]"
                                                 src={image}
                                             />
                                         )}
                                         <h2 className="mb-2 font-semibold text-lg">
                                             {item.title}
                                         </h2>
-                                        <p className="text-base">
+                                        <p className="text-base text-center">
                                             {item.content}
                                         </p>
                                     </div>
@@ -195,7 +195,7 @@ const Benefits = ({ content }: any) => {
                                 <div key={item.title} className="pb-5 border-b">
                                     {image && (
                                         <img
-                                            className="mb-2 mx-auto"
+                                            className="mb-2 mx-auto max-w-[75px]"
                                             src={image}
                                         />
                                     )}
@@ -222,33 +222,28 @@ const Faqs = ({ content }: any) => {
                     <h2 className="mb-10 text-center text-2xl font-semibold">
                         Frequently Asked Questions
                     </h2>
-                    <div className=" grid sm:grid-cols-2 gap-10">
+                    <div className=" ">
                         <div className="col-span-1 flex flex-col ">
                             {content.faqs.map((item: any, i: number) => {
                                 return (
-                                    <button
-                                        className="text-left mb-2 font-semibold border-b pb-2"
-                                        onMouseOver={() => setNum(i)}
-                                        value={i}
-                                        key={item.title}
-                                    >
-                                        {item.title}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                        <div>
-                            {content.faqs.map((item: any, i: number) => {
-                                return (
-                                    <div
-                                        className={` absolute ${
-                                            num === i
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
-                                        key={item.content}
-                                    >
-                                        {item.content}
+                                    <div className="border-b pb-4 mb-4">
+                                        <button
+                                            className="text-left mb-2 w-full font-semibold "
+                                            onClick={() => setNum(i)}
+                                            value={i}
+                                            key={item.title}
+                                        >
+                                            {item.title}
+                                        </button>
+                                        <div
+                                            className={` ${
+                                                num === i
+                                                    ? "opacity-100 relative"
+                                                    : "opacity-0 absolute"
+                                            }`}
+                                        >
+                                            {item.content}
+                                        </div>
                                     </div>
                                 );
                             })}
@@ -304,21 +299,42 @@ const Final = ({ content }: any) => {
                             className="p-1 border border-deepGreenO rounded-sm w-1/2"
                             placeholder={"Email"}
                         />
-                        <Link
-                            onClick={handleInputs}
-                            className="button--light min-w-[200px]"
-                            href={content.finalCtaUrl}
-                        >
-                            {loader
-                                ? "Sending..."
-                                : success
-                                ? "Message Sent!"
-                                : success === false
-                                ? "Error"
-                                : content.finalCtaText
-                                ? content.finalCtaText
-                                : "Submit"}
-                        </Link>
+                        {content.finalCtaUrl ? (
+                            <Link
+                                onClick={handleInputs}
+                                className="button--light min-w-[200px]"
+                                href={
+                                    content.finalCtaUrl
+                                        ? content.finalCtaUrl
+                                        : "#"
+                                }
+                            >
+                                {loader
+                                    ? "Sending..."
+                                    : success
+                                    ? "Message Sent!"
+                                    : success === false
+                                    ? "Error"
+                                    : content.finalCtaText
+                                    ? content.finalCtaText
+                                    : "Submit"}
+                            </Link>
+                        ) : (
+                            <button
+                                onClick={handleInputs}
+                                className="button--light min-w-[200px]"
+                            >
+                                {loader
+                                    ? "Sending..."
+                                    : success
+                                    ? "Message Sent!"
+                                    : success === false
+                                    ? "Error"
+                                    : content.finalCtaText
+                                    ? content.finalCtaText
+                                    : "Submit"}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
