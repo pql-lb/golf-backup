@@ -101,17 +101,24 @@ export const Child = React.memo(({ items, items2 }: any) => {
                     className={` wrapper flex flex-col md:flex-row pt-10 gap-10 `}
                 >
                     <TextSection content={content} />
-                    <InputSection
-                        content={content}
-                        check={check}
-                        setCheck={setCheck}
-                        loader={loader}
-                        marker={marker}
-                        message={message}
-                        handleClick={handleClick}
-                        state={state}
-                        setState={setState}
-                    />
+                    {content.rightSideImage ? (
+                        <img
+                            className="object-cover"
+                            src={content.rightSideImage.fields.file.url}
+                        />
+                    ) : (
+                        <InputSection
+                            content={content}
+                            check={check}
+                            setCheck={setCheck}
+                            loader={loader}
+                            marker={marker}
+                            message={message}
+                            handleClick={handleClick}
+                            state={state}
+                            setState={setState}
+                        />
+                    )}
                 </div>
             </Wrapper>
             <div style={{ height: content.spacer }}></div>
