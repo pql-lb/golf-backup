@@ -30,14 +30,14 @@ const nextConfig = withPWA({
     dest: 'public',
     runtimeCaching: [
       {
-        urlPattern: /^https:\/\/chat-golf-project.vercel.app\/.*$/,
+        urlPattern: /^https:\/\/feedbackgolf.com\/.*$/,
         handler: 'NetworkFirst',
         options: {
           cacheName: 'api-cache',
         },
       },
       {
-        urlPattern: /^https:\/\/chat-golf-project.vercel.app\/.*$/,
+        urlPattern: /^https:\/\/feedbackgolf.com\/.*$/,
         handler: 'CacheFirst',
         options: {
           cacheName: 'static-assets',

@@ -69,7 +69,7 @@ export const CheckoutForm = () => {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: `https://chat-golf-project.vercel.app/return`,
+                return_url: `https://feedbackgolf.com/return`,
             },
         });
 
