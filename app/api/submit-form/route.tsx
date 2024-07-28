@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
         console.log("fired", body);
         const params = {
             Destination: {
-                ToAddresses: ["laelbaker@hotmail.co.uk"],
+                ToAddresses: ["hello@feedbacktooling.com"],
             },
             Message: {
                 Body: {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
                 },
                 Subject: { Data: "New Hero Form Submission" },
             },
-            Source: "laelbaker@hotmail.co.uk",
+            Source: "hello@feedbacktooling.com",
         };
 
         let sendPromise = new AWS.SES({ apiVersion: "2010-12-01" })
