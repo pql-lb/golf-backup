@@ -26,29 +26,6 @@ const nextConfig = withPWA({
           },
       ],
   },
-  pwa: {
-    dest: 'public',
-    runtimeCaching: [
-      {
-        urlPattern: /^https:\/\/feedbackgolf.com\/.*$/,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'api-cache',
-        },
-      },
-      {
-        urlPattern: /^https:\/\/feedbackgolf.com\/.*$/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'static-assets',
-          expiration: {
-            maxEntries: 50,
-            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days
-          },
-        },
-      },
-    ],
-  }
 });
 
 module.exports = nextConfig;
