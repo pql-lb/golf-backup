@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import mongoose, { ConnectOptions } from "mongoose";
 import AWS from "aws-sdk";
-
-const uri = process.env.URI;
-mongoose.connect(String(uri), {
-    useUnifiedTopology: true,
-} as ConnectOptions);
 
 AWS.config.update({
     accessKeyId: process.env.AWS_ID,
