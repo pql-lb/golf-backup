@@ -288,55 +288,59 @@ const Final = ({ content }: any) => {
             <div className="my-20">
                 <div className="wrapper">
                     <h2 className="text-2xl mb-5">{content.finalHeadline}</h2>
-                    <div className="flex gap-5">
-                        <input
-                            value={input1}
-                            onChange={(e: any) => setInput1(e.target.value)}
-                            className="p-1 border border-deepGreenO rounded-sm w-1/2"
-                            placeholder={"Name"}
-                        />
-                        <input
-                            value={input2}
-                            onChange={(e: any) => setInput2(e.target.value)}
-                            className="p-1 border border-deepGreenO rounded-sm w-1/2"
-                            placeholder={"Email"}
-                        />
-                        {content.finalCtaUrl ? (
-                            <Link
-                                onClick={handleInputs}
-                                className="button--light min-w-[200px]"
-                                href={
-                                    content.finalCtaUrl
-                                        ? content.finalCtaUrl
-                                        : "#"
-                                }
-                            >
-                                {loader
-                                    ? "Sending..."
-                                    : success
-                                    ? "Message Sent!"
-                                    : success === false
-                                    ? "Error"
-                                    : content.finalCtaText
-                                    ? content.finalCtaText
-                                    : "Submit"}
-                            </Link>
-                        ) : (
-                            <button
-                                onClick={handleInputs}
-                                className="button--light min-w-[200px]"
-                            >
-                                {loader
-                                    ? "Sending..."
-                                    : success
-                                    ? "Message Sent!"
-                                    : success === false
-                                    ? "Error"
-                                    : content.finalCtaText
-                                    ? content.finalCtaText
-                                    : "Submit"}
-                            </button>
-                        )}
+                    <div className="">
+                        <div className="flex gap-5">
+                            <input
+                                value={input1}
+                                onChange={(e: any) => setInput1(e.target.value)}
+                                className="p-1 border border-deepGreenO rounded-sm w-1/2"
+                                placeholder={"Name"}
+                            />
+                            <input
+                                value={input2}
+                                onChange={(e: any) => setInput2(e.target.value)}
+                                className="p-1 border border-deepGreenO rounded-sm w-1/2"
+                                placeholder={"Email"}
+                            />
+                        </div>
+                        <div>
+                            {content.finalCtaUrl ? (
+                                <Link
+                                    onClick={handleInputs}
+                                    className="button--light w-full min-w-[200px]"
+                                    href={
+                                        content.finalCtaUrl
+                                            ? content.finalCtaUrl
+                                            : "#"
+                                    }
+                                >
+                                    {loader
+                                        ? "Sending..."
+                                        : success
+                                        ? "Message Sent!"
+                                        : success === false
+                                        ? "Error"
+                                        : content.finalCtaText
+                                        ? content.finalCtaText
+                                        : "Submit"}
+                                </Link>
+                            ) : (
+                                <button
+                                    onClick={handleInputs}
+                                    className="button--light w-full min-w-[200px]"
+                                >
+                                    {loader
+                                        ? "Sending..."
+                                        : success
+                                        ? "Message Sent!"
+                                        : success === false
+                                        ? "Error"
+                                        : content.finalCtaText
+                                        ? content.finalCtaText
+                                        : "Submit"}
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
