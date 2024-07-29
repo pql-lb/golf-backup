@@ -43,7 +43,7 @@ export const Pay = React.memo(({ amount, content }: any) => {
             <h1 className="mb-3 heading-1 px-4 pt-6 md:pt-20 max-w-[750px] ">
                 {content.textHeader}
             </h1>
-            <div className="mb-5 rich-text">
+            <div className="mb-5 rich-text text-center">
                 {documentToReactComponents(content.textBody)}
             </div>
             <input
