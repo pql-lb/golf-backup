@@ -40,7 +40,15 @@ export const Pay = React.memo(({ amount, content }: any) => {
     const [input, setInput] = useState("");
     return (
         <div className="overflow-y-auto max-h-screen w-full px-10 pb-10 pt-5 flex flex-col items-center order-2">
-            <h1 className="mb-3 heading-1 px-4 pt-6 md:pt-20 max-w-[750px] ">
+            <h1
+                className={`mb-3 heading-1 px-4 pt-6 md:pt-20 max-w-[750px] ${
+                    content.headingFontSize === "Large"
+                        ? "text-3xl"
+                        : content.headingFontSize === "Medium"
+                        ? "text-xl"
+                        : "text-sm"
+                } `}
+            >
                 {content.textHeader}
             </h1>
             <div className="mb-5 rich-text text-center">
