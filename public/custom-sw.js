@@ -24,7 +24,7 @@ self.addEventListener('push', function(event) {
 
 // // Runtime caching for API calls
 registerRoute(
-    process.env.SW_URL,
+    /^https:\/\/feebackgolf\.com\/.*$/,
     new NetworkFirst({
       cacheName: 'api-cache',
       networkTimeoutSeconds: 10,
@@ -42,7 +42,7 @@ registerRoute(
   
   // Runtime caching for the homepage
   registerRoute(
-    process.env.SW_URL,
+    /^https:\/\/feebackgolf\.com\/.*$/,
     new NetworkFirst({
       cacheName: 'homepage-cache',
       plugins: [
@@ -59,7 +59,7 @@ registerRoute(
   
   // Runtime caching for static assets
   registerRoute(
-    process.env.SW_URL,
+    /^https:\/\/feebackgolf\.com\/.*$/,
     new CacheFirst({
       cacheName: 'static-assets',
       plugins: [
