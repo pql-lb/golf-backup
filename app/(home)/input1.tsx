@@ -1,15 +1,16 @@
-import { Context } from "@/wrappers/store";
+import { Context, DispatchContext } from "@/wrappers/store";
 import { useContext, useEffect, useState } from "react";
 
-export const Input1 = ({ marker, stateParent, setState, update }: any) => {
+export const Input1 = ({ marker }: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
-
+    const dispatch: any = useContext(DispatchContext);
     const handleBlur = () => {
         if (inputValue.length === 0) {
             setInputValue(11.4);
-            setState({ ...stateParent, field1: 11.4 });
+
+            dispatch({ type: "field1", payload: 11.4 });
         } else {
-            setState({ ...stateParent, field1: inputValue });
+            dispatch({ type: "field1", payload: inputValue });
         }
     };
 

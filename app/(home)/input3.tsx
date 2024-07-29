@@ -1,4 +1,4 @@
-import { Context } from "@/wrappers/store";
+import { Context, DispatchContext } from "@/wrappers/store";
 import { useContext, useEffect, useState } from "react";
 const text = "Placeholder text";
 
@@ -24,19 +24,12 @@ const Checkbox = ({ marker, check, setCheck }: any) => {
     );
 };
 
-export const Input3 = ({
-    marker,
-    check,
-    setCheck,
-    content,
-    stateParent,
-    setState,
-    update,
-}: any) => {
+export const Input3 = ({ marker, check, setCheck, content }: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
     const text = content.input5PlaceholderText;
+    const dispatch: any = useContext(DispatchContext);
     const handleBlur = () => {
-        setState({ ...stateParent, field3: inputValue });
+        dispatch({ type: "field1", payload: inputValue });
     };
 
     return (

@@ -13,9 +13,6 @@ export const InputSection = ({
     setCheck,
     message,
     content,
-    state,
-    setState,
-    update,
 }: any) => {
     return (
         <div className="w-full relative md:w-[50%] md:min-h-[100vh] flex items-center">
@@ -31,29 +28,14 @@ export const InputSection = ({
                             <Loader />
                         </div>
                     )}
-                    <Input1
-                        stateParent={state}
-                        setState={setState}
-                        marker={marker}
-                        content={content}
-                        update={update}
-                    />
-                    <Input2
-                        stateParent={state}
-                        setState={setState}
-                        marker={marker}
-                        content={content}
-                        update={update}
-                    />
+                    <Input1 marker={marker} content={content} />
+                    <Input2 marker={marker} content={content} />
 
                     <Input3
                         marker={marker}
-                        stateParent={state}
-                        setState={setState}
                         content={content}
                         check={check}
                         setCheck={setCheck}
-                        update={update}
                     />
 
                     {message && (

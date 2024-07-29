@@ -8,11 +8,11 @@ export const Hero = ({ content }: any) => {
     const router = useRouter();
     const [marker, setMarker] = useState(2);
     const { state } = useContext(Context);
-    const [stateInputs, setStateInputs] = useState<any>({
-        field1: "",
-        field2: "",
-        field3: "",
-    });
+    // const [stateInputs, setStateInputs] = useState<any>({
+    //     field1: "",
+    //     field2: "",
+    //     field3: "",
+    // });
 
     const [update, setUpdate] = useState(false);
     const [loader, setLoader] = useState(false);
@@ -23,13 +23,13 @@ export const Hero = ({ content }: any) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const checker =
             num === 2
-                ? stateInputs["field2"] !== null &&
-                  stateInputs["field2"].length > 0 &&
-                  stateInputs["field1"] !== null &&
-                  stateInputs["field1"] > 0
-                : stateInputs[String("field" + num)] !== null &&
-                  stateInputs[String("field" + num)].length > 0 &&
-                  emailPattern.test(stateInputs[String("field" + num)]);
+                ? state["field2"] !== null &&
+                  state["field2"].length > 0 &&
+                  state["field1"] !== null &&
+                  state["field1"] > 0
+                : state["field3"] !== null &&
+                  state["field3"].length > 0 &&
+                  emailPattern.test(state["field3"]);
         setTimeout(() => {
             if (checker) {
                 //success
@@ -62,7 +62,11 @@ export const Hero = ({ content }: any) => {
                 fetch("api/update-session", {
                     method: "POST",
                     body: JSON.stringify({
-                        fields: stateInputs,
+                        fields: {
+                            field1: state.field1,
+                            field2: state.field2,
+                            field3: state.field3,
+                        },
                         token: state.session.token.id,
                     }),
                 })
@@ -102,8 +106,6 @@ export const Hero = ({ content }: any) => {
                         marker={marker}
                         message={message}
                         handleClick={handleClick}
-                        state={stateInputs}
-                        setState={setStateInputs}
                         update={update}
                     />
                 )}

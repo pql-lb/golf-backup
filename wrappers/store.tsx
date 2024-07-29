@@ -6,12 +6,18 @@ const initialState = {
     loaded: false,
     session: null,
     subscription: null,
+    field1: "",
+    field2: "",
+    field3: "",
 };
 export interface State {
     state: {
         loaded: boolean;
         session: any;
         subscription: any;
+        field1: any;
+        field2: any;
+        field3: any;
     };
     dispatch?: React.Dispatch<any>;
 }
@@ -33,6 +39,15 @@ const reducer = (state: any, action: any) => {
         }
         case "session": {
             return { ...state, session: action.payload };
+        }
+        case "field1": {
+            return { ...state, field1: action.payload };
+        }
+        case "field2": {
+            return { ...state, field1: action.payload };
+        }
+        case "field3": {
+            return { ...state, field1: action.payload };
         }
         default: {
             return state;
