@@ -48,7 +48,6 @@ export const Child = ({ assets }: any) => {
                 {loaded &&
                     sortedImages &&
                     sortedImages.map((image: any, i: number) => {
-                        console.log(image.fields);
                         return (
                             <div>
                                 {i === 0 ? (

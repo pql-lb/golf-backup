@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const Input1 = ({ marker, state, setState }: any) => {
+export const Input1 = ({ marker, state, setState, update }: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
 
     const handleBlur = () => {
@@ -13,16 +13,17 @@ export const Input1 = ({ marker, state, setState }: any) => {
     };
 
     useEffect(() => {
-        console.log("fired");
-        fetch("api/update-session", {
-            method: "POST",
-            body: JSON.stringify({ input: inputValue, key: "input1" }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            });
-    }, [inputValue]);
+        if (inputValue && update) {
+            fetch("api/update-session", {
+                method: "POST",
+                body: JSON.stringify({ input: inputValue, key: "input1" }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
+        }
+    }, [inputValue, update]);
     return (
         <div
             className={`flex flex-col ${

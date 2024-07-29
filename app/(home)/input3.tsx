@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const text = "Placeholder text";
 
 const Checkbox = ({ marker, check, setCheck }: any) => {
@@ -30,12 +30,25 @@ export const Input3 = ({
     content,
     state,
     setState,
+    update,
 }: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
     const text = content.input5PlaceholderText;
     const handleBlur = () => {
         setState({ ...state, 3: inputValue });
     };
+    useEffect(() => {
+        if (inputValue && update) {
+            fetch("api/update-session", {
+                method: "POST",
+                body: JSON.stringify({ input: inputValue, key: "input3" }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
+        }
+    }, [inputValue]);
     return (
         <div
             className={`flex flex-col ${

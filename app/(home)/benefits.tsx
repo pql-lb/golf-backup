@@ -5,14 +5,17 @@ export const Benefits = ({ content }: any) => {
             {content?.benefits?.length > 0 && (
                 <div className="wrapper my-20 ">
                     <div className="grid gap-5 sm:grid-cols-3 ">
-                        {content.benefits.map((item: any) => {
+                        {content.benefits.map((item: any, i: number) => {
                             let image;
                             if (item.image) {
                                 image = item.image.fields.file["en-US"].url;
                             }
 
                             return (
-                                <div key={"b" + item.title} className="pb-5 ">
+                                <div
+                                    key={"b" + item.title + String(i)}
+                                    className="pb-5 "
+                                >
                                     {image && (
                                         <img
                                             className="mb-2 mx-auto max-w-[75px]"

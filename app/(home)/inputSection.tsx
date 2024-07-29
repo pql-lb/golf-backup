@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Input1 } from "./input1";
 import { Input2 } from "./input2";
 import { Input3 } from "./input3";
@@ -14,6 +15,7 @@ export const InputSection = ({
     content,
     state,
     setState,
+    update,
 }: any) => {
     return (
         <div className="w-full relative md:w-[50%] md:min-h-[100vh] flex items-center">
@@ -34,12 +36,14 @@ export const InputSection = ({
                         setState={setState}
                         marker={marker}
                         content={content}
+                        update={update}
                     />
                     <Input2
                         state={state}
                         setState={setState}
                         marker={marker}
                         content={content}
+                        update={update}
                     />
 
                     <Input3
@@ -49,6 +53,7 @@ export const InputSection = ({
                         content={content}
                         check={check}
                         setCheck={setCheck}
+                        update={update}
                     />
 
                     {message && (

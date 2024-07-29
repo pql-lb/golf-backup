@@ -14,14 +14,18 @@ export const Faqs = ({ content }: any) => {
                             {content.faqs.map((item: any, i: number) => {
                                 return (
                                     <div
-                                        key={"faq" + item.title}
+                                        key={"faq" + item.title + String(i)}
                                         className="border-b pb-4 mb-4"
                                     >
                                         <button
                                             className="text-left mb-2 cursor-pointer w-full font-semibold "
                                             onClick={() => setNum(i)}
                                             value={i}
-                                            key={"faqbtn" + item.title}
+                                            key={
+                                                "faqbtn" +
+                                                item.title +
+                                                String(i)
+                                            }
                                         >
                                             <span className="pointer-events-none">
                                                 {item.title}

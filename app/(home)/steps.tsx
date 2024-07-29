@@ -6,7 +6,7 @@ export const Steps = ({ content }: any) => {
                 <div className="bg-green-50 py-10">
                     <div className="wrapper my-20  ">
                         <div className="grid sm:grid-cols-3 gap-10">
-                            {content.steps.map((item: any) => {
+                            {content.steps.map((item: any, i: number) => {
                                 let image;
                                 if (item.image) {
                                     image = item.image.fields.file["en-US"].url;
@@ -14,7 +14,7 @@ export const Steps = ({ content }: any) => {
 
                                 return (
                                     <div
-                                        key={item.title}
+                                        key={item.title + String(i)}
                                         className="flex flex-col items-center"
                                     >
                                         {image && (
