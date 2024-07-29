@@ -30,14 +30,6 @@ const nextConfig = withPWA({
         },
     },
     webpack(config, { isServer }) {
-      // if (!isServer) {
-      //   config.plugins.push(
-      //     new InjectManifest({
-      //       swSrc: 'public/custom-sw.js',
-      //       swDest: 'public/sw.js',
-      //     })
-      //   );
-      // }
       config.resolve.alias.canvas = false;
       return config;
     },

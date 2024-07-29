@@ -11,29 +11,29 @@ export const ServiceW = () => {
                         "ServiceWorker registration successful with scope: ",
                         registration.scope
                     );
-                    const existingSubscription =
-                        await registration.pushManager.getSubscription();
+                    // const existingSubscription =
+                    //     await registration.pushManager.getSubscription();
 
-                    if (existingSubscription) {
-                        console.log("Already subscribed", existingSubscription);
-                        dispatch({
-                            type: "subscription",
-                            payload: existingSubscription,
-                        });
-                    } else {
-                        Notification.requestPermission().then((permission) => {
-                            console.log("perm", permission);
-                            if (permission === "granted") {
-                                if (!registration.active) {
-                                    console.error(
-                                        "Service worker is not active."
-                                    );
-                                    return;
-                                }
-                                subscribeUserToPush(registration);
-                            }
-                        });
-                    }
+                    // if (existingSubscription) {
+                    //     console.log("Already subscribed", existingSubscription);
+                    //     dispatch({
+                    //         type: "subscription",
+                    //         payload: existingSubscription,
+                    //     });
+                    // } else {
+                    //     Notification.requestPermission().then((permission) => {
+                    //         console.log("perm", permission);
+                    //         if (permission === "granted") {
+                    //             if (!registration.active) {
+                    //                 console.error(
+                    //                     "Service worker is not active."
+                    //                 );
+                    //                 return;
+                    //             }
+                    //             subscribeUserToPush(registration);
+                    //         }
+                    //     });
+                    // }
                 },
                 (error) => {
                     console.log("ServiceWorker registration failed: ", error);
@@ -42,14 +42,12 @@ export const ServiceW = () => {
         }
     }, []);
     const subscribeUserToPush = async (registration: any) => {
-        console.log("sub user", registration);
         const subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(
                 "BPcfyLtxngAk_CETwvxF_RIk_tjrdOCxbBMO8qGRVN1wKBL9folGU9ccUO8jdfpNItrevbMM6Dz7c5Q4Tw7VW8Q"
             ),
         });
-        console.log("subscription", subscription);
 
         const response = await fetch("/api/subscribe", {
             method: "POST",
