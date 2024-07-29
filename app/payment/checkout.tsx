@@ -96,7 +96,6 @@ export const CheckoutForm = ({ input }: any) => {
         <form
             id="payment-form"
             style={{
-                background: "rgba(246, 249, 252, 1)",
                 borderRadius: "20px",
                 padding: "1rem",
                 maxWidth: 750,

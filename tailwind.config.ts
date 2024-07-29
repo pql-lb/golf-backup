@@ -23,7 +23,8 @@ module.exports = {
 deepGreen: "#008c1a",
 deepGreenO: "rgba(0, 140, 26, 0.2)",
 lightGreen: "#ebf5ed",
-stripe: "rgba(246, 249, 252, 1)"
+stripe: "rgba(246, 249, 252, 1)",
+"stripe-50": "rgba(246, 249, 252, 0.9)"
 			},
 		},
 	},

@@ -1,7 +1,7 @@
 import React from "react";
 import { headers } from "next/headers";
 import { createClient } from "contentful";
-import { Child } from "./child";
+import { ChildPay } from "./child";
 
 //PAYMENT ELEMENT
 export default async function Home() {
@@ -17,5 +17,5 @@ export default async function Home() {
         content_type: "paymentPage",
     });
 
-    return <Child items={res2.items} />;
+    return <ChildPay items={res2.items} />;
 }

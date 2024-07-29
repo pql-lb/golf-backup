@@ -7,7 +7,7 @@ import { Discount } from "./discount";
 import { Pay } from "./pay";
 
 //PAYMENT ELEMENT
-export const Child = ({ items }: any) => {
+export const ChildPay = ({ items, setModal }: any) => {
     const content = items[0].fields;
     const [amount, setAmount] = useState(1500);
     const [inputs, setInputs] = useState({
@@ -31,7 +31,13 @@ export const Child = ({ items }: any) => {
         }
     };
     return (
-        <div className=" bg-stripe min-h-[100vh]">
+        <div className=" bg-stripe-50 backdrop-blur-sm min-h-[100vh]">
+            <button
+                className="right-4 top-4 text-3xl hover:text-deepGreen absolute"
+                onClick={() => setModal(false)}
+            >
+                X
+            </button>
             <div className=" font-sans ">
                 <div className="flex md:flex-row flex-col">
                     <Pay content={content} key={amount} amount={amount} />
