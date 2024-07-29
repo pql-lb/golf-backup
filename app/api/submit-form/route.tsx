@@ -18,10 +18,10 @@ export async function POST(request: NextRequest) {
             Message: {
                 Body: {
                     Text: {
-                        Data: `Input1: ${body.input1}, Input2: ${body.input2}`,
+                        Data: `New Waitlist Sign Up Form from Feedback Golf.  Input1: ${body.input1}, Input2: ${body.input2}`,
                     },
                 },
-                Subject: { Data: "New Hero Form Submission" },
+                Subject: { Data: "New Waitlist Sign Up Form" },
             },
             Source: "hello@feedbacktooling.com",
         };
