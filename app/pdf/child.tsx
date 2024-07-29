@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { PdfViewer } from "./pdfViewer";
-import { Loader } from "../(home)/loader";
 import { Stats } from "./stats";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";

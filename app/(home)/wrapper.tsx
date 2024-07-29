@@ -20,6 +20,7 @@ export const AuthWrapper = React.memo(({ children, noSw }: any) => {
                 timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                 browserInfo: JSON.stringify(browserInfo),
                 redirect: false,
+                startTime: new Date().getTime(),
             });
         } else if (status === "authenticated") {
             dispatch({ type: "session", payload: session });

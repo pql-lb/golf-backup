@@ -12,6 +12,8 @@ const SessionsSchema = new mongoose.Schema({
     id: String,
     browserInfo: String,
     timeZone: String,
+    startTime: Date,
+    lastActivity: Date,
 });
 
 export default mongoose.models.Sessions ||

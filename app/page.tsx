@@ -1,5 +1,5 @@
 import { createClient } from "contentful";
-import { Child, WrapperChild } from "./(home)/child";
+import { WrapperChild } from "./(home)/child";
 import { headers } from "next/headers";
 
 export default async function Home() {

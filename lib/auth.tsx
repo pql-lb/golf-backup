@@ -10,11 +10,15 @@ export const authOptions: NextAuthOptions = {
             credentials: {
                 browserInfo: { label: "Browser Info", type: "text" },
                 timeZone: { label: "Time Zone", type: "text" },
+                startTime: { label: "Start Time", type: "date" },
             },
             authorize: async (credentials: any) => {
                 //check whether a token has been applied via login page & if so user userID rather than uuid
                 const browserInfo = JSON.parse(credentials.browserInfo);
                 const timeZone = credentials.timeZone;
+                const startTime = credentials.startTime;
+                console.log(startTime, new Date(Number(startTime)));
+                // const lastActivity = credentials.lastActivity;
 
                 const userAgent = browserInfo.userAgent;
                 const user = {
@@ -22,6 +26,8 @@ export const authOptions: NextAuthOptions = {
                     name: "Anonymous",
                     browserInfo: userAgent,
                     timeZone: timeZone,
+                    startTime: new Date(Number(startTime)),
+                    // lastActivity
                 };
                 return user;
             },
@@ -43,6 +49,7 @@ export const authOptions: NextAuthOptions = {
                 token.name = user.name;
                 token.browserInfo = user.browserInfo || "default-browser-info";
                 token.timeZone = user.timeZone;
+                token.startTime = user.startTime;
             }
             return token;
         },
@@ -52,6 +59,7 @@ export const authOptions: NextAuthOptions = {
                 name: token.name,
                 browserInfo: token.browserInfo,
                 timeZone: token.timeZone,
+                startTime: token.startTime,
             };
             session.token = token;
             return session;

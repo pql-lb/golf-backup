@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
             id: session.user.id,
             browserInfo: session.user.browserInfo,
             timeZone: session.user.timeZone,
+            startTime: session.user.startTime,
         });
         return new NextResponse(
             JSON.stringify({
