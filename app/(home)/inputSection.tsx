@@ -32,14 +32,14 @@ export const InputSection = ({
                         </div>
                     )}
                     <Input1
-                        state={state}
+                        stateParent={state}
                         setState={setState}
                         marker={marker}
                         content={content}
                         update={update}
                     />
                     <Input2
-                        state={state}
+                        stateParent={state}
                         setState={setState}
                         marker={marker}
                         content={content}
@@ -48,7 +48,7 @@ export const InputSection = ({
 
                     <Input3
                         marker={marker}
-                        state={state}
+                        stateParent={state}
                         setState={setState}
                         content={content}
                         check={check}

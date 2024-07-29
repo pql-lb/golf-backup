@@ -9,16 +9,17 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { ServiceW } from "./pushNotification";
 import { getCookie } from "@/helpers/cookie";
-import { createSession } from "../payment/actions";
+import { createSession } from "../../lib/actions";
 import { Benefits } from "./benefits";
 import { Steps } from "./steps";
 import { Faqs } from "./faq";
 import { Final } from "./final";
 import { Hero } from "./hero";
+import { DispatchContext } from "@/wrappers/store";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
     const { status, data: session }: any = useSession();
-
+    const dispatch: any = useContext(DispatchContext);
     useEffect(() => {
         const browserInfo = {
             userAgent: navigator.userAgent,
@@ -31,7 +32,24 @@ export const WrapperChild = React.memo(({ items, items2 }: any) => {
                 redirect: false,
             });
         } else if (status === "authenticated") {
-            createSession();
+            // setTimeout(() => createSession(), 1000);
+            dispatch({ type: "session", payload: session });
+            const token = session.token.id;
+            (async function () {
+                const res = await fetch(`/api/get-session`, {
+                    method: "POST",
+                    body: JSON.stringify({ token }),
+                });
+                const data = await res.json();
+
+                if (data && !data.session) {
+                    const res = await fetch(`/api/create-session`, {
+                        method: "POST",
+                        body: JSON.stringify({ token }),
+                    });
+                    const data = await res.json();
+                }
+            })();
         }
     }, [status]);
     if (status === "loading" || !session) {

@@ -2,17 +2,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import {
     useStripe,
     useElements,
-    EmbeddedCheckoutProvider,
-    EmbeddedCheckout,
-    CardElement,
-    Elements,
     PaymentElement,
 } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "@/wrappers/store";
 
-//PAYMENT ELEMENT
-const YOUR_DOMAIN = process.env.HOME_URL;
 export const CheckoutForm = ({ input }: any) => {
+    const { state } = useContext(Context);
     const stripe = useStripe();
     const elements = useElements();
 
@@ -74,7 +70,7 @@ export const CheckoutForm = ({ input }: any) => {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: `${window.location.origin}/return`,
+                return_url: `${window.location.origin}/return?token=${state.session.token.id}`,
             },
         });
 

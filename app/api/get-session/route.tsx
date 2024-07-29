@@ -3,6 +3,7 @@
 import Sessions from "@/models/sessions";
 import mongoose, { ConnectOptions } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
+import cookie from "cookie";
 const uri = process.env.MONGODB_URI;
 mongoose.connect(
     "mongodb+srv://wBoojuOcxzTGwrp4:wBoojuOcxzTGwrp4@cluster0.5wwunqs.mongodb.net/Golf",

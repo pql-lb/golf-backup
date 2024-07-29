@@ -24,7 +24,6 @@ export const Pay = React.memo(({ amount, content, stripe_key }: any) => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log("here", amount);
                     setClientSecret(data.clientSecret);
                 });
         }

@@ -4,7 +4,6 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export async function action() {
-    console.log("reval");
     revalidateTag("collection");
 }
 

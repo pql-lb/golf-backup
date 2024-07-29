@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PdfViewer } from "./pdfViewer";
 import { Loader } from "../(home)/loader";
 import { Stats } from "./stats";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { ChildPay } from "../payment/child";
+import { Context } from "@/wrappers/store";
 
 const Item = ({ title, setModal }: any) => {
     return (
@@ -90,6 +91,8 @@ export const Child = ({ items }: any) => {
     const [loaded, setLoaded] = useState(false);
     const [pdfUrl, setPdfUrl] = useState("");
     const [modal, setModal] = useState(false);
+    const { state } = useContext(Context);
+    console.log(state);
 
     useEffect(() => {
         // if (!loaded) {

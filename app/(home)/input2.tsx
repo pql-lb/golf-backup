@@ -1,25 +1,21 @@
-import { useEffect, useState } from "react";
+import { Context } from "@/wrappers/store";
+import { useContext, useEffect, useState } from "react";
 
 const text =
     "I have good distance with my driving but I leak it to the right quite often and snap hook it a bit too. I am not very accurate with my irons and feel like there's not much of a difference distance wise between my 5 iron and 7 iron. I am a terrible putter especially from short range. I have a fairly good mindset on the golf course, I do not let it bother me too much";
-export const Input2 = ({ marker, content, state, setState, update }: any) => {
+export const Input2 = ({
+    marker,
+    content,
+    stateParent,
+    setState,
+    update,
+}: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
     const text = "Example: " + content.input1PlaceholderText;
     const handleBlur = () => {
-        setState({ ...state, 2: inputValue });
+        setState({ ...stateParent, field2: inputValue });
     };
-    useEffect(() => {
-        if (inputValue && update) {
-            fetch("api/update-session", {
-                method: "POST",
-                body: JSON.stringify({ input: inputValue, key: "input2" }),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                });
-        }
-    }, [inputValue, update]);
+
     return (
         <div
             className={`flex flex-col ${

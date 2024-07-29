@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { InputSection } from "@/app/(home)/inputSection";
 import { TextSection } from "@/app/(home)/textSection";
@@ -10,54 +10,34 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 import { getCookie } from "@/helpers/cookie";
-import { createSession } from "../payment/actions";
+import { createSession } from "../../lib/actions";
 import { Steps } from "../(home)/steps";
 import { Benefits } from "../(home)/benefits";
 import { Faqs } from "../(home)/faq";
 import { Final } from "../(home)/final";
+import { Context } from "@/wrappers/store";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
-    const { status, data: session }: any = useSession();
-    // const saveSession = () => {
-    //     let cookie: any = getCookie("next-auth.session-token");
-    //     if (!cookie) {
-    //         cookie = getCookie("__Secure-next-auth.session-token");
-    //     }
-    //     console.log(cookie, document.cookie);
-    //     // fetch("/api/save-session", {
-    //     //     method: "POST",
-    //     //     body: JSON.stringify({}),
-    //     // })
-    //     //     .then((res) => res.json())
-    //     //     .then((data) => console.log(data));
-    // };
+    const { state } = useContext(Context);
+    const params = useSearchParams();
     useEffect(() => {
-        const browserInfo = {
-            userAgent: navigator.userAgent,
-        };
-        if (status === "loading") return;
-        if (status === "unauthenticated") {
-            signIn("custom", {
-                browserInfo: JSON.stringify(browserInfo),
-                redirect: false,
-            });
-        } else if (status === "authenticated") {
-            // setTimeout(() => {
-            //     saveSession();
-            // }, 2000);
-            createSession();
-        }
-    }, [status]);
-    if (status === "loading" || !session) {
-        return <div className="w-full h-screen"></div>;
-    } else {
-        return (
-            <>
-                {/* <ServiceW /> */}
-                <Child items={items} />
-            </>
-        );
-    }
+        fetch(`/api/update-pi`, {
+            method: "POST",
+            body: JSON.stringify({
+                token: params.get("token"),
+                pi: params.get("payment_intent"),
+                //check for login token (applied when user logs in) & if present update both user collection & session collection WITH userId
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    }, [state]);
+
+    return (
+        <>
+            <Child items={items} />
+        </>
+    );
 });
 export const Child = React.memo(({ items, items2 }: any) => {
     const router = useRouter();

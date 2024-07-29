@@ -5,6 +5,7 @@ import Stripe from "stripe";
 import { cookies } from "next/headers";
 import mongoose, { ConnectOptions } from "mongoose";
 import Payments from "@/models/payments";
+import sessions from "@/models/sessions";
 
 const uri = process.env.MONGODB_URI;
 mongoose.connect(
@@ -31,30 +32,22 @@ export async function POST(request: NextRequest) {
             pi,
         }).exec();
 
-        if (existingPayments) {
-            return new NextResponse(
-                JSON.stringify({
-                    message:
-                        "Payments with this token and date already exists.",
-                    data: existingPayments,
-                }),
-                {
-                    status: 409, // Conflict
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+        if (!existingPayments) {
+            const data = await Payments.create({
+                token,
+                pi: pi,
+                date: currentDate,
+            });
         }
-        const data = await Payments.create({
-            token,
-            pi: pi,
-            date: currentDate,
-        });
+        const session = await sessions.findOneAndUpdate(
+            { token: token },
+            { pi: pi },
+            { new: true }
+        );
         return new NextResponse(
             JSON.stringify({
                 message: "Successfully created Payments",
-                data,
+                session,
             }),
             {
                 status: 200,

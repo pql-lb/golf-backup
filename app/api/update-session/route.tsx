@@ -14,18 +14,13 @@ mongoose.connect(
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-    const { input, key } = body;
-    const cookieStore = cookies();
-    let cookie: any = cookieStore.get("next-auth.session-token");
-    if (!cookie) {
-        cookie = cookieStore.get("__Secure-next-auth.session-token");
-    }
-    const token = cookie ? cookie.value : null;
+    const { fields, token } = body;
 
     try {
+        console.log(fields);
         const session = await Sessions.findOneAndUpdate(
             { token: token },
-            { [key]: input },
+            { $set: fields },
             { new: true }
         );
         if (!session) {

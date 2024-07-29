@@ -4,13 +4,13 @@ import React, { createContext, useReducer, useEffect, Dispatch } from "react";
 
 const initialState = {
     loaded: false,
-
+    session: null,
     subscription: null,
 };
 export interface State {
     state: {
         loaded: boolean;
-
+        session: any;
         subscription: any;
     };
     dispatch?: React.Dispatch<any>;
@@ -30,6 +30,9 @@ const reducer = (state: any, action: any) => {
         }
         case "loaded": {
             return { ...state, loaded: action.payload };
+        }
+        case "session": {
+            return { ...state, session: action.payload };
         }
         default: {
             return state;

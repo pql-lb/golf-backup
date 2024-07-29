@@ -17,7 +17,6 @@ export const authOptions: NextAuthOptions = {
                 const user = {
                     id: uuidv4(),
                     name: "Anonymous",
-                    email: null,
                     browserInfo: userAgent,
                 };
                 return user;
@@ -27,6 +26,7 @@ export const authOptions: NextAuthOptions = {
 
     session: {
         strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60,
     },
     jwt: {
         secret: process.env.NEXTAUTH_SECRET,

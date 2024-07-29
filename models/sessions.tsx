@@ -4,9 +4,10 @@ import mongoose from "mongoose";
 const SessionsSchema = new mongoose.Schema({
     token: String,
     date: Date,
-    input1: String,
-    input2: String,
-    input3: String,
+    field1: String,
+    field2: String,
+    field3: String,
+    pi: String,
 });
 
 export default mongoose.models.Sessions ||
