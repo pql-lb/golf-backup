@@ -1,4 +1,6 @@
 import { cookies } from "next/headers";
+import { Child } from "./child";
+import { createClient } from "contentful";
 
 export default async function Page({ params, searchParams }: any) {
     //const session = await getServerSession(authOptions);
@@ -19,18 +21,25 @@ export default async function Page({ params, searchParams }: any) {
     });
     const data = await res.json();
 
+    const spaceId: any = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
+    const token2: any = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+    const client = createClient({
+        space: spaceId,
+        accessToken: token2,
+    });
+
+    const entryId: any = "q9oA1kJ6mRbIrHDFGUsjq";
+    const entry = await client.getEntry(entryId);
+
     return (
-        <div className="bg-lightGreen h-[100vh] py-20 font-sans">
-            <div className="wrapper">
-                {data && data.data ? (
-                    <>
-                        <h1 className="heading-1 mb-4">Payment Success</h1>
-                        <p>You will receive your email in X days</p>
-                    </>
-                ) : (
-                    <></>
-                )}
-            </div>
+        <div>
+            {data && data.data ? (
+                <>
+                    <Child items={entry} />
+                </>
+            ) : (
+                <></>
+            )}
         </div>
     );
 }
