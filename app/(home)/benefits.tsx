@@ -12,7 +12,7 @@ export const Benefits = ({ content }: any) => {
                             }
 
                             return (
-                                <div key={item.title} className="pb-5 ">
+                                <div key={"b" + item.title} className="pb-5 ">
                                     {image && (
                                         <img
                                             className="mb-2 mx-auto max-w-[75px]"
