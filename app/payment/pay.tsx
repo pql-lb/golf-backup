@@ -12,10 +12,8 @@ import React, { useEffect, useState } from "react";
 import { CheckoutForm } from "./checkout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-export const Pay = React.memo(({ amount, content }: any) => {
-    const stripePromise = loadStripe(
-        "pk_test_51Mv1PuDD8a2lLFRfe3bBkoPa734nH3X4eItO7pL3DGCFgVxyYxU8ePn7aOybXgkOOHtMZJzQfE0HfJaF32DdaNh600GtzIsiLG"
-    );
+export const Pay = React.memo(({ amount, content, stripe_key }: any) => {
+    const stripePromise = loadStripe(stripe_key);
     const [clientSecret, setClientSecret] = useState("");
     useEffect(() => {
         if (!clientSecret) {

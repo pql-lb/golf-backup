@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Input1 = ({ marker, state, setState }: any) => {
     const [inputValue, setInputValue] = useState<any>(""); // State to manage the input value
@@ -11,6 +11,18 @@ export const Input1 = ({ marker, state, setState }: any) => {
             setState({ ...state, 1: inputValue });
         }
     };
+
+    useEffect(() => {
+        console.log("fired");
+        fetch("api/update-session", {
+            method: "POST",
+            body: JSON.stringify({ input: inputValue, key: "input1" }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+    }, [inputValue]);
     return (
         <div
             className={`flex flex-col ${
