@@ -4,6 +4,7 @@ import Sessions from "@/models/sessions";
 import mongoose, { ConnectOptions } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import cookie from "cookie";
+
 const uri = process.env.MONGODB_URI;
 mongoose.connect(
     "mongodb+srv://wBoojuOcxzTGwrp4:wBoojuOcxzTGwrp4@cluster0.5wwunqs.mongodb.net/Golf",
@@ -14,14 +15,20 @@ mongoose.connect(
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-    const { token } = body;
+    const { token, session } = body;
 
     try {
-        const session = Sessions.create({ token: token });
+        const session2 = Sessions.create({
+            token: token,
+            name: session.user.name,
+            id: session.user.id,
+            browserInfo: session.user.browserInfo,
+            timeZone: session.user.timeZone,
+        });
         return new NextResponse(
             JSON.stringify({
                 message: "Success",
-                session,
+                session: session2,
             }),
             {
                 status: 200,

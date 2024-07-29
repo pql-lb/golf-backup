@@ -17,11 +17,11 @@ export const AuthWrapper = React.memo(({ children, noSw }: any) => {
         if (status === "loading") return;
         if (status === "unauthenticated") {
             signIn("custom", {
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                 browserInfo: JSON.stringify(browserInfo),
                 redirect: false,
             });
         } else if (status === "authenticated") {
-            // setTimeout(() => createSession(), 1000);
             dispatch({ type: "session", payload: session });
             const token = session.token.id;
             (async function () {
@@ -34,7 +34,7 @@ export const AuthWrapper = React.memo(({ children, noSw }: any) => {
                 if (data && !data.session) {
                     const res = await fetch(`/api/create-session`, {
                         method: "POST",
-                        body: JSON.stringify({ token }),
+                        body: JSON.stringify({ token, session }),
                     });
                     const data = await res.json();
                 }

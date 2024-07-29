@@ -8,6 +8,10 @@ const SessionsSchema = new mongoose.Schema({
     field2: String,
     field3: String,
     pi: String,
+    name: String,
+    id: String,
+    browserInfo: String,
+    timeZone: String,
 });
 
 export default mongoose.models.Sessions ||
