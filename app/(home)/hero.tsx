@@ -21,15 +21,16 @@ export const Hero = ({ content }: any) => {
 
     const determineState = (num: any) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        console.log(state);
         const checker =
             num === 2
-                ? state["field2"] !== null &&
-                  state["field2"].length > 0 &&
-                  state["field1"] !== null &&
-                  state["field1"] > 0
-                : state["field3"] !== null &&
-                  state["field3"].length > 0 &&
-                  emailPattern.test(state["field3"]);
+                ? state.field2 !== null &&
+                  state.field2.length > 0 &&
+                  state.field1 !== null &&
+                  state.field1 > 0
+                : state.field3 !== null &&
+                  state.field3.length > 0 &&
+                  emailPattern.test(state.field3);
         setTimeout(() => {
             if (checker) {
                 //success

@@ -29,7 +29,7 @@ export const Input3 = ({ marker, check, setCheck, content }: any) => {
     const text = content.input5PlaceholderText;
     const dispatch: any = useContext(DispatchContext);
     const handleBlur = () => {
-        dispatch({ type: "field1", payload: inputValue });
+        dispatch({ type: "field3", payload: inputValue });
     };
 
     return (

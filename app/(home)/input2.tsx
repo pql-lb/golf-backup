@@ -8,7 +8,7 @@ export const Input2 = ({ marker, content }: any) => {
     const text = "Example: " + content.input1PlaceholderText;
     const dispatch: any = useContext(DispatchContext);
     const handleBlur = () => {
-        dispatch({ type: "field1", payload: inputValue });
+        dispatch({ type: "field2", payload: inputValue });
     };
 
     return (

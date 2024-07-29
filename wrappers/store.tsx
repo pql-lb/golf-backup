@@ -44,10 +44,10 @@ const reducer = (state: any, action: any) => {
             return { ...state, field1: action.payload };
         }
         case "field2": {
-            return { ...state, field1: action.payload };
+            return { ...state, field2: action.payload };
         }
         case "field3": {
-            return { ...state, field1: action.payload };
+            return { ...state, field3: action.payload };
         }
         default: {
             return state;
