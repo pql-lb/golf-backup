@@ -126,10 +126,12 @@ export const Child = React.memo(({ items, items2 }: any) => {
                 >
                     <TextSection content={content} />
                     {content.rightSideImage ? (
-                        <img
-                            className="object-cover max-w-[50%]"
-                            src={content.rightSideImage.fields.file.url}
-                        />
+                        <div className="flex items-center max-w-[50%] max-h-[600px]">
+                            <img
+                                className="object-cover"
+                                src={content.rightSideImage.fields.file.url}
+                            />
+                        </div>
                     ) : (
                         <InputSection
                             content={content}
