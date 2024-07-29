@@ -38,7 +38,14 @@ export const AuthWrapper = React.memo(({ children, noSw }: any) => {
                         body: JSON.stringify({ token, session }),
                     });
                     const data = await res.json();
+                } else {
+                    const res = await fetch(`/api/last-activity`, {
+                        method: "POST",
+                        body: JSON.stringify({ token, session }),
+                    });
+                    const data = await res.json();
                 }
+                //if does exist update lastActivity
             })();
         }
     }, [status]);
