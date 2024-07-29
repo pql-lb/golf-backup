@@ -8,6 +8,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "@/wrappers/store";
 
 export const CheckoutForm = ({ input }: any) => {
+    const paymentElementOptions: any = {
+        layout: "tabs",
+    };
     const { state } = useContext(Context);
     const stripe = useStripe();
     const elements = useElements();
@@ -59,8 +62,9 @@ export const CheckoutForm = ({ input }: any) => {
             return;
         }
 
+        //should be checking they've filled in all fields again too
+
         if (!stripe || !elements) {
-            //disable submission
             return;
         }
 
@@ -69,7 +73,6 @@ export const CheckoutForm = ({ input }: any) => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                // Make sure to change this to your payment completion page
                 return_url: `${window.location.origin}/return?token=${state.session.token.id}`,
             },
         });
@@ -81,10 +84,6 @@ export const CheckoutForm = ({ input }: any) => {
         }
 
         setIsLoading(false);
-    };
-
-    const paymentElementOptions: any = {
-        layout: "tabs",
     };
 
     return (

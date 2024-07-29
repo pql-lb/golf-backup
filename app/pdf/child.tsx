@@ -8,6 +8,7 @@ import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { ChildPay } from "../payment/child";
 import { Context } from "@/wrappers/store";
+import { AuthWrapper } from "../(home)/wrapper";
 
 const Item = ({ title, setModal }: any) => {
     return (
@@ -88,88 +89,65 @@ const Sidebar = () => {
     );
 };
 export const Child = ({ items }: any) => {
-    const [loaded, setLoaded] = useState(false);
-    const [pdfUrl, setPdfUrl] = useState("");
     const [modal, setModal] = useState(false);
-    const { state } = useContext(Context);
-    console.log(state);
-
-    useEffect(() => {
-        // if (!loaded) {
-        //     fetch("/api/fetch-pdf", {
-        //         method: "POST",
-        //     })
-        //         .then((res) => res.blob())
-        //         .then((data) => {
-        //             const pdfDataUri = URL.createObjectURL(data);
-        //             setPdfUrl(pdfDataUri);
-        //         });
-        // }
-    }, []);
 
     return (
-        <div className=" bg-white min-h-[100vh]">
-            {modal && (
-                <div className="fixed z-[99999] w-full">
-                    <ChildPay setModal={setModal} items={items} />
-                </div>
-            )}
-            <div className="flex">
-                <Sidebar />
-                <div className="pt-20 py-10 md:px-10 w-full  relative flex justify-center flex-col items-center font-sans ">
-                    <div
-                        id="summary"
-                        className="mb-10 flex flex-col items-center"
-                    >
-                        <h2 className="heading-1 mb-2 ">
-                            Here’s where you’re at
-                        </h2>
-                        <p className="mb-2">ChatGPT response text</p>
-                        <Link href="/" className="button--light w-fit">
-                            Update Answers
-                        </Link>
+        <AuthWrapper noSw={true}>
+            <div className=" bg-white min-h-[100vh]">
+                {modal && (
+                    <div className="fixed z-[99999] w-full">
+                        <ChildPay setModal={setModal} items={items} />
                     </div>
+                )}
+                <div className="flex">
+                    <Sidebar />
+                    <div className="pt-20 py-10 md:px-10 w-full  relative flex justify-center flex-col items-center font-sans ">
+                        <div
+                            id="summary"
+                            className="mb-10 flex flex-col items-center"
+                        >
+                            <h2 className="heading-1 mb-2 ">
+                                Here’s where you’re at
+                            </h2>
+                            <p className="mb-2">ChatGPT response text</p>
+                            <Link href="/" className="button--light w-fit">
+                                Update Answers
+                            </Link>
+                        </div>
 
-                    <div
-                        id="benchmarkstatistics"
-                        className="mb-10 w-full relative"
-                    >
-                        <h2 className="heading-1 mb-2 text-center">
-                            Your Benchmark Statistics
-                        </h2>
-                        <Stats />
+                        <div
+                            id="benchmarkstatistics"
+                            className="mb-10 w-full relative"
+                        >
+                            <h2 className="heading-1 mb-2 text-center">
+                                Your Benchmark Statistics
+                            </h2>
+                            <Stats />
+                        </div>
+                        <Item
+                            setModal={setModal}
+                            title="Targeted Improvement – Addressing Specific Weaknesses"
+                        />
+                        <Item
+                            setModal={setModal}
+                            title="Strategic Roadmap For Hitting Your Specific Goals"
+                        />
+                        <Item
+                            setModal={setModal}
+                            title="Comprehensive Considerations for Holistic Improvement"
+                        />
+                        <Item
+                            setModal={setModal}
+                            title="Questions to Ask During Your Next Golf Lesson"
+                        />
+                        <Item
+                            setModal={setModal}
+                            title="Further Learning Resources for Targeted Improvement"
+                        />
+                        <Item setModal={setModal} title="Conclusion" />
                     </div>
-                    <Item
-                        setModal={setModal}
-                        title="Targeted Improvement – Addressing Specific Weaknesses"
-                    />
-                    <Item
-                        setModal={setModal}
-                        title="Strategic Roadmap For Hitting Your Specific Goals"
-                    />
-                    <Item
-                        setModal={setModal}
-                        title="Comprehensive Considerations for Holistic Improvement"
-                    />
-                    <Item
-                        setModal={setModal}
-                        title="Questions to Ask During Your Next Golf Lesson"
-                    />
-                    <Item
-                        setModal={setModal}
-                        title="Further Learning Resources for Targeted Improvement"
-                    />
-                    <Item setModal={setModal} title="Conclusion" />
-
-                    {/* {pdfUrl ? (
-                    <PdfViewer pdfBlob={pdfUrl} />
-                ) : (
-                    <div className="w-full flex justify-center">
-                        <Loader />
-                    </div>
-                )} */}
                 </div>
             </div>
-        </div>
+        </AuthWrapper>
     );
 };

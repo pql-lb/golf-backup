@@ -8,20 +8,13 @@ export const Hero = ({ content }: any) => {
     const router = useRouter();
     const [marker, setMarker] = useState(2);
     const { state } = useContext(Context);
-    // const [stateInputs, setStateInputs] = useState<any>({
-    //     field1: "",
-    //     field2: "",
-    //     field3: "",
-    // });
-
-    const [update, setUpdate] = useState(false);
     const [loader, setLoader] = useState(false);
     const [check, setCheck] = useState(false);
     const [message, setMessage] = useState("");
 
     const determineState = (num: any) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        console.log(state);
+
         const checker =
             num === 2
                 ? state.field2 !== null &&
@@ -107,7 +100,6 @@ export const Hero = ({ content }: any) => {
                         marker={marker}
                         message={message}
                         handleClick={handleClick}
-                        update={update}
                     />
                 )}
             </div>
