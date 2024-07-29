@@ -59,7 +59,7 @@ export const Pay = React.memo(({ amount, content }: any) => {
                 value={input}
                 name="email"
                 placeholder="Email"
-                className="py-2 px-4 font-roboto w-full max-w-[720px] border-black-50 rounded-md border"
+                className="py-2 px-4 font-roboto w-full max-w-[95%] md:max-w-[720px] border-black-50 rounded-md border"
             />
             {clientSecret && (
                 <Elements stripe={stripePromise} options={options}>
