@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const { token } = body;
 
     try {
-        const session = Sessions.create({ token: token });
+        const session = await Sessions.findOne({ token: token });
         return new NextResponse(
             JSON.stringify({
                 message: "Success",

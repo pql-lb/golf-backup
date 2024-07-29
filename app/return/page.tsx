@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
+
 export default async function Page({ params, searchParams }: any) {
     //const session = await getServerSession(authOptions);
     const cookieStore = cookies();

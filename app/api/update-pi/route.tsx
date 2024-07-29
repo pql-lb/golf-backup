@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { cookies } from "next/headers";
 import mongoose, { ConnectOptions } from "mongoose";
-import Session from "@/models/session";
+import Payments from "@/models/payments";
 
 const uri = process.env.MONGODB_URI;
 mongoose.connect(
@@ -27,15 +27,16 @@ export async function POST(request: NextRequest) {
             now.getMinutes()
         );
 
-        const existingSession = await Session.findOne({
+        const existingPayments = await Payments.findOne({
             pi,
         }).exec();
 
-        if (existingSession) {
+        if (existingPayments) {
             return new NextResponse(
                 JSON.stringify({
-                    message: "Session with this token and date already exists.",
-                    data: existingSession,
+                    message:
+                        "Payments with this token and date already exists.",
+                    data: existingPayments,
                 }),
                 {
                     status: 409, // Conflict
@@ -45,14 +46,14 @@ export async function POST(request: NextRequest) {
                 }
             );
         }
-        const data = await Session.create({
+        const data = await Payments.create({
             token,
             pi: pi,
             date: currentDate,
         });
         return new NextResponse(
             JSON.stringify({
-                message: "Successfully created session",
+                message: "Successfully created Payments",
                 data,
             }),
             {

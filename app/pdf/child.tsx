@@ -140,11 +140,23 @@ export const Child = ({ items }: any) => {
                         setModal={setModal}
                         title="Targeted Improvement – Addressing Specific Weaknesses"
                     />
-                    <Item title="Strategic Roadmap For Hitting Your Specific Goals" />
-                    <Item title="Comprehensive Considerations for Holistic Improvement" />
-                    <Item title="Questions to Ask During Your Next Golf Lesson" />
-                    <Item title="Further Learning Resources for Targeted Improvement" />
-                    <Item title="Conclusion" />
+                    <Item
+                        setModal={setModal}
+                        title="Strategic Roadmap For Hitting Your Specific Goals"
+                    />
+                    <Item
+                        setModal={setModal}
+                        title="Comprehensive Considerations for Holistic Improvement"
+                    />
+                    <Item
+                        setModal={setModal}
+                        title="Questions to Ask During Your Next Golf Lesson"
+                    />
+                    <Item
+                        setModal={setModal}
+                        title="Further Learning Resources for Targeted Improvement"
+                    />
+                    <Item setModal={setModal} title="Conclusion" />
 
                     {/* {pdfUrl ? (
                     <PdfViewer pdfBlob={pdfUrl} />

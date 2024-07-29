@@ -9,7 +9,6 @@ import {
     PaymentElement,
 } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-import action from "./actions";
 
 //PAYMENT ELEMENT
 const YOUR_DOMAIN = process.env.HOME_URL;
@@ -95,10 +94,12 @@ export const CheckoutForm = ({ input }: any) => {
     return (
         <form
             id="payment-form"
+            className=""
             style={{
                 borderRadius: "20px",
                 padding: "1rem",
                 maxWidth: 750,
+                minHeight: 500,
                 width: "100%",
             }}
             onSubmit={handleSubmit}

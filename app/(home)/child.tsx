@@ -9,10 +9,24 @@ import { Wrapper } from "@/wrappers/opacity";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { ServiceW } from "./pushNotification";
+import { getCookie } from "@/helpers/cookie";
+import { createSession } from "../payment/actions";
 
 export const WrapperChild = React.memo(({ items, items2 }: any) => {
     const { status, data: session }: any = useSession();
-
+    // const saveSession = () => {
+    //     let cookie: any = getCookie("next-auth.session-token");
+    //     if (!cookie) {
+    //         cookie = getCookie("__Secure-next-auth.session-token");
+    //     }
+    //     console.log(cookie, document.cookie);
+    //     // fetch("/api/save-session", {
+    //     //     method: "POST",
+    //     //     body: JSON.stringify({}),
+    //     // })
+    //     //     .then((res) => res.json())
+    //     //     .then((data) => console.log(data));
+    // };
     useEffect(() => {
         const browserInfo = {
             userAgent: navigator.userAgent,
@@ -23,6 +37,11 @@ export const WrapperChild = React.memo(({ items, items2 }: any) => {
                 browserInfo: JSON.stringify(browserInfo),
                 redirect: false,
             });
+        } else if (status === "authenticated") {
+            // setTimeout(() => {
+            //     saveSession();
+            // }, 2000);
+            createSession();
         }
     }, [status]);
     if (status === "loading" || !session) {
@@ -108,7 +127,7 @@ export const Child = React.memo(({ items, items2 }: any) => {
                     <TextSection content={content} />
                     {content.rightSideImage ? (
                         <img
-                            className="object-cover"
+                            className="object-cover max-w-[50%]"
                             src={content.rightSideImage.fields.file.url}
                         />
                     ) : (
@@ -240,7 +259,10 @@ const Faqs = ({ content }: any) => {
                         <div className="col-span-1 flex flex-col ">
                             {content.faqs.map((item: any, i: number) => {
                                 return (
-                                    <div className="border-b pb-4 mb-4">
+                                    <div
+                                        key={item.title}
+                                        className="border-b pb-4 mb-4"
+                                    >
                                         <button
                                             className="text-left mb-2 cursor-pointer w-full font-semibold "
                                             onClick={() => setNum(i)}

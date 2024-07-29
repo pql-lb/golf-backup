@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import action from "./actions";
-
-import { Discount } from "./discount";
+import { action } from "./actions";
 import { Pay } from "./pay";
 
 //PAYMENT ELEMENT
