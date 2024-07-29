@@ -35,11 +35,11 @@ export const Child = ({ items }: any) => {
             <div className=" font-sans ">
                 <div className="flex md:flex-row flex-col">
                     <Pay content={content} key={amount} amount={amount} />
-                    <Discount
+                    {/* <Discount
                         inputs={inputs}
                         setInputs={setInputs}
                         handleClick={handleClick}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

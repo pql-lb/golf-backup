@@ -13,7 +13,7 @@ import action from "./actions";
 
 //PAYMENT ELEMENT
 const YOUR_DOMAIN = process.env.HOME_URL;
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ input }: any) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -58,6 +58,12 @@ export const CheckoutForm = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input)) {
+            setMessage("Please enter a valid email address.");
+            return;
+        }
+
         if (!stripe || !elements) {
             //disable submission
             return;
@@ -93,7 +99,7 @@ export const CheckoutForm = () => {
                 background: "rgba(246, 249, 252, 1)",
                 borderRadius: "20px",
                 padding: "1rem",
-                maxWidth: 600,
+                maxWidth: 750,
                 width: "100%",
             }}
             onSubmit={handleSubmit}
