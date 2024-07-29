@@ -44,10 +44,10 @@
 		@apply text-2xl;
 	}  
 	.para-medium .home  .para {
-		@apply text-xl;
+		@apply text-base;
 	}
 	.para-small .home  .para {
-		@apply text-lg;
+		@apply text-sm;
 	}
 
 	.rich-text > * {
