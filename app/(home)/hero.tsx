@@ -87,7 +87,7 @@ export const Hero = ({ content }: any) => {
                 {content.rightSideImage ? (
                     <div className="flex items-center  max-w-full  md:max-w-[50%] ">
                         <img
-                            className="object-covermx-auto max-h-[500px]"
+                            className="object-cover mx-auto max-h-[500px]"
                             src={content.rightSideImage.fields.file.url}
                         />
                     </div>
