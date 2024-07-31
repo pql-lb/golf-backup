@@ -85,9 +85,9 @@ export const Hero = ({ content }: any) => {
             >
                 <TextSection content={content} />
                 {content.rightSideImage ? (
-                    <div className="flex items-center max-w-[50%] ">
+                    <div className="flex items-center  max-w-full  md:max-w-[50%] ">
                         <img
-                            className="object-cover max-h-[500px]"
+                            className="object-covermx-auto max-h-[500px]"
                             src={content.rightSideImage.fields.file.url}
                         />
                     </div>
