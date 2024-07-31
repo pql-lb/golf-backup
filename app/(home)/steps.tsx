@@ -5,6 +5,9 @@ export const Steps = ({ content }: any) => {
             {content?.steps?.length > 0 && (
                 <div className="bg-green-50 py-10">
                     <div className="wrapper my-20  ">
+                        <h2 className="mb-10 text-center text-2xl font-semibold">
+                            Step-by-Step Improvement
+                        </h2>
                         <div className="grid sm:grid-cols-3 gap-10">
                             {content.steps.map((item: any, i: number) => {
                                 let image;

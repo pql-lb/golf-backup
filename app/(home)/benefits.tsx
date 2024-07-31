@@ -4,6 +4,9 @@ export const Benefits = ({ content }: any) => {
             {" "}
             {content?.benefits?.length > 0 && (
                 <div className="wrapper my-20 ">
+                    <h2 className="mb-10 text-center text-2xl font-semibold">
+                        Benefits
+                    </h2>
                     <div className="grid gap-5 sm:grid-cols-3 ">
                         {content.benefits.map((item: any, i: number) => {
                             let image;

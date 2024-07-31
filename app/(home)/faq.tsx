@@ -18,7 +18,7 @@ export const Faqs = ({ content }: any) => {
                                         className="border-b pb-4 mb-4"
                                     >
                                         <button
-                                            className="text-left mb-2 cursor-pointer w-full font-semibold "
+                                            className="text-left mb-2 py-1 cursor-pointer w-full font-semibold "
                                             onClick={() => setNum(i)}
                                             value={i}
                                             key={
