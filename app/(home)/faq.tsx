@@ -20,6 +20,7 @@ export const Faqs = ({ content }: any) => {
                                         <button
                                             className="text-left mb-2 py-1 cursor-pointer w-full font-semibold "
                                             onClick={() => setNum(i)}
+                                            onTouchEnd={() => setNum(i)}
                                             value={i}
                                             key={
                                                 "faqbtn" +
@@ -34,8 +35,8 @@ export const Faqs = ({ content }: any) => {
                                         <div
                                             className={` ${
                                                 num === i
-                                                    ? "opacity-100 relative"
-                                                    : "opacity-0 absolute"
+                                                    ? "opacity-100 relative pointer-events-auto"
+                                                    : "opacity-0 absolute pointer-events-none"
                                             }`}
                                         >
                                             {item.content}
