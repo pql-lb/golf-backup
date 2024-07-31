@@ -110,7 +110,7 @@ export const Child = React.memo(({ items, items2 }: any) => {
                 >
                     <TextSection content={content} />
                     {content.rightSideImage ? (
-                        <div className="flex items-center max-w-[50%] ">
+                        <div className="flex items-center md:max-w-[50%] ">
                             <img
                                 className="object-cover max-h-[500px]"
                                 src={content.rightSideImage.fields.file.url}

@@ -39,13 +39,14 @@ export const AuthWrapper = React.memo(({ children, noSw }: any) => {
                     });
                     const data = await res.json();
                 } else {
+                    //if does exist update lastActivity
                     const res = await fetch(`/api/last-activity`, {
                         method: "POST",
                         body: JSON.stringify({ token, session }),
                     });
                     const data = await res.json();
+                    //check on same browser & if no send email?
                 }
-                //if does exist update lastActivity
             })();
         }
     }, [status]);
