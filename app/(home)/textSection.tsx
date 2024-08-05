@@ -9,25 +9,35 @@ export const TextSection = ({ content }: any) => {
     const [input2, setInput2] = useState("");
     const [loader, setLoader] = useState(false);
     const [success, setSuccess] = useState<any>(null);
+    const [error, setError] = useState<any>(null);
     const handleInputs = async () => {
+        setSuccess(null);
+        setError(null);
         setLoader(true);
-        const formData = { input1, input2 };
-        const response = await fetch("/api/submit-form", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const data = await response.json();
-        if (data) {
-            setLoader(false);
-        }
-        if (data.message === "Success") {
-            setSuccess(true);
+        if (input1.length && input2.length && emailPattern.test(input2)) {
+            const formData = { input1, input2 };
+            const response = await fetch("/api/submit-form", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+            if (data) {
+                setLoader(false);
+            }
+
+            if (data.message === "Success") {
+                setSuccess(true);
+            } else {
+                setSuccess(false);
+            }
         } else {
-            setSuccess(false);
+            setError(true);
         }
     };
     return (
@@ -83,11 +93,23 @@ export const TextSection = ({ content }: any) => {
                             />
                         )}
                     </div>
+                    {error ? (
+                        <>
+                            <p className="mb-1">
+                                Please ensure all fields are filled in before
+                                continuing
+                            </p>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                     <button
                         onClick={handleInputs}
                         className="w-full bg-deepGreenO hover:bg-deepGreen hover:text-white duration-500 text-deepGreen  mt-2 font-bold py-2 text-base"
                     >
-                        {loader
+                        {error
+                            ? "Error"
+                            : loader
                             ? "Sending..."
                             : success
                             ? "Message Sent!"

@@ -5,26 +5,36 @@ export const Final = ({ content }: any) => {
     const [input1, setInput1] = useState("");
     const [input2, setInput2] = useState("");
     const [loader, setLoader] = useState(false);
+    const [error, setError] = useState<any>(null);
     const [success, setSuccess] = useState<any>(null);
     const handleInputs = async () => {
+        setSuccess(null);
+        setError(null);
         setLoader(true);
-        const formData = { input1, input2 };
-        const response = await fetch("/api/submit-form", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const data = await response.json();
-        if (data) {
-            setLoader(false);
-        }
-        if (data.message === "Success") {
-            setSuccess(true);
+        if (input1.length && input2.length && emailPattern.test(input2)) {
+            const formData = { input1, input2 };
+            const response = await fetch("/api/submit-form", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+            if (data) {
+                setLoader(false);
+            }
+
+            if (data.message === "Success") {
+                setSuccess(true);
+            } else {
+                setSuccess(false);
+            }
         } else {
-            setSuccess(false);
+            setError(true);
         }
     };
     if (content.finalHeadline || content.finalCtaText || content.finalCtaUrl) {
@@ -48,6 +58,16 @@ export const Final = ({ content }: any) => {
                             />
                         </div>
                         <div>
+                            {error ? (
+                                <>
+                                    <p className="mb-1">
+                                        Please ensure all fields are filled in
+                                        before continuing
+                                    </p>
+                                </>
+                            ) : (
+                                <></>
+                            )}
                             {content.finalCtaUrl ? (
                                 <Link
                                     onClick={handleInputs}
@@ -58,7 +78,9 @@ export const Final = ({ content }: any) => {
                                             : "#"
                                     }
                                 >
-                                    {loader
+                                    {error
+                                        ? "Error"
+                                        : loader
                                         ? "Sending..."
                                         : success
                                         ? "Message Sent!"
@@ -73,7 +95,9 @@ export const Final = ({ content }: any) => {
                                     onClick={handleInputs}
                                     className="button--light w-full min-w-[200px]"
                                 >
-                                    {loader
+                                    {error
+                                        ? "Error"
+                                        : loader
                                         ? "Sending..."
                                         : success
                                         ? "Message Sent!"
